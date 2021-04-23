@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\News;
@@ -16,19 +17,8 @@ class NewsController extends Controller
     public function index()
     {
         //
-        $data['news'] = News::select(['id', 'created_at', 'title'])->orderBy('created_at', 'desc')->paginate();
-        return view('admin.News_index')->with('data', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view('admin.News_create');
+        $data = News::select(['id', 'created_at', 'title'])->orderBy('created_at', 'desc')->paginate();
+        return response()->json($data);
     }
 
     /**
@@ -48,7 +38,7 @@ class NewsController extends Controller
         $item->title = $request->input('title');
         $item->ctx = $request->input('ctx');
         $item->save();
-        return response("200");
+        return response('Store OK');
     }
 
     /**
@@ -60,21 +50,8 @@ class NewsController extends Controller
     public function show($id)
     {
         //
-        $data['news'] = News::select(['id', 'title', 'ctx', 'created_at'])->where('id', $id)->get();
-        return view('admin.News_show')->with('data', $data);
-    }
-    
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-        $data['news'] = News::select(['id', 'title', 'ctx', 'created_at'])->where('id', $id)->get();
-        return view('admin.News_edit')->with('data', $data);
+        $data = News::select(['id', 'title', 'ctx', 'created_at'])->where('id', $id)->get();
+        return response()->json($data);
     }
 
     /**
@@ -91,11 +68,11 @@ class NewsController extends Controller
             'title' => 'required',
             'ctx' => 'required'
         ]);
-        $item = News::find($id);
+        $item = News::findOrFail($id);
         $item->title = $request->input('title');
         $item->ctx = $request->input('ctx');
         $item->save();
-        return response("Update OK.", 200);
+        return response('Update OK.');
     }
 
     /**
@@ -106,7 +83,37 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
+        //
         News::destroy($id);
-        return response("Remove ok");
+        return response('Remove OK.');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+        return view('admin.News_edit');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+        return view('admin.News_create');
+    }
+
+    public function admin()
+    {
+        //
+        return view('admin.News_index');
     }
 }
