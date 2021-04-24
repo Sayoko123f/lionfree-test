@@ -10,9 +10,13 @@
 </head>
 
 <body>
-    @include('nav')
-    @include('admin.nav')
-    @yield('body')
+    <div id="app">
+        @include('admin.nav')
+        @include('admin.header')
+        @yield('body')
+        <router-view></router-view>
+
+    </div>
     <script src="{{asset('js/app.js')}}" defer></script>
 </body>
 

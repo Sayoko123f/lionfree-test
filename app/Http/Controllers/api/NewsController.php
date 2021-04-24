@@ -17,7 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         //
-        $data = News::select(['id', 'created_at', 'title'])->orderBy('created_at', 'desc')->paginate();
+        $data = News::select(['id', 'created_at', 'title'])->orderBy('created_at', 'desc')->paginate(4);
         return response()->json($data);
     }
 
@@ -27,19 +27,19 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-        $request->validate([
-            'title' => 'required',
-            'ctx' => 'required'
-        ]);
-        $item = new News();
-        $item->title = $request->input('title');
-        $item->ctx = $request->input('ctx');
-        $item->save();
-        return response('Store OK');
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    //     $request->validate([
+    //         'title' => 'required',
+    //         'ctx' => 'required'
+    //     ]);
+    //     $item = new News();
+    //     $item->title = $request->input('title');
+    //     $item->ctx = $request->input('ctx');
+    //     $item->save();
+    //     return response('Store OK');
+    // }
 
     /**
      * Display the specified resource.
@@ -61,19 +61,19 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-        $request->validate([
-            'title' => 'required',
-            'ctx' => 'required'
-        ]);
-        $item = News::findOrFail($id);
-        $item->title = $request->input('title');
-        $item->ctx = $request->input('ctx');
-        $item->save();
-        return response('Update OK.');
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    //     $request->validate([
+    //         'title' => 'required',
+    //         'ctx' => 'required'
+    //     ]);
+    //     $item = News::findOrFail($id);
+    //     $item->title = $request->input('title');
+    //     $item->ctx = $request->input('ctx');
+    //     $item->save();
+    //     return response('Update OK.');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -81,12 +81,12 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-        News::destroy($id);
-        return response('Remove OK.');
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    //     News::destroy($id);
+    //     return response('Remove OK.');
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -94,26 +94,26 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-        return view('admin.News_edit');
-    }
+    // public function edit($id)
+    // {
+    //     //
+    //     return view('admin.News_edit');
+    // }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-        return view('admin.News_create');
-    }
+    // public function create()
+    // {
+    //     //
+    //     return view('admin.News_create');
+    // }
 
-    public function admin()
-    {
-        //
-        return view('admin.News_index');
-    }
+    // public function admin()
+    // {
+    //     //
+    //     return view('admin.News_index');
+    // }
 }

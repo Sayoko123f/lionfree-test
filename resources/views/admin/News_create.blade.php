@@ -1,6 +1,6 @@
 @extends('admin.main')
 @section('body')
-<div id="app" class="container">
+<div class="container">
     {{-- <form action="{{route('news.store')}}" method="POST">
     @csrf
     <div class="form-group">

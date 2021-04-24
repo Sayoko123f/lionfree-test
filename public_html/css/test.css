@@ -1,0 +1,9 @@
+body::after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
+    content: url("/img/bg04.jpg") url("/img/bg05.jpg") url("/img/bg06.jpg") url("/img/bg07.jpg");
+}
+

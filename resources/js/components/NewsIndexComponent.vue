@@ -1,6 +1,11 @@
 <template>
-  <div class="container">
-    <admin-nav></admin-nav>
+  <div class="container" v-show="!onLoading">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <span class="nav-link">&nbsp;</span>
+        <!-- <a class="nav-link" href="#" @click="$router.go(-1)">返回</a> -->
+      </li>
+    </ul>
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
@@ -14,7 +19,11 @@
             <td>{{ item.created_at }}</td>
             <td>
               <router-link
-                :to="{ name: 'newsShow', params: { id: item.id } }"
+                :to="{
+                  name: 'newsShow',
+                  params: { id: item.id },
+                  query: { page: current_page },
+                }"
                 >{{ item.title }}</router-link
               >
             </td>
@@ -25,13 +34,10 @@
     <nav aria-label="Page navigation">
       <ul class="pagination justify-content-center">
         <li class="page-item" :class="{ disabled: current_page == 1 }">
-          <a class="page-link" href="#" @click="pageMove(-1)">◄</a>
+          <span role="button" class="page-link" @click="pageMove(-1)">◄</span>
         </li>
-        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
         <li class="page-item" :class="{ disabled: current_page == maxPage }">
-          <a class="page-link" href="#" @click="pageMove(1)">►</a>
+          <span role="button" class="page-link" @click="pageMove(1)">►</span>
         </li>
       </ul>
     </nav>
@@ -39,12 +45,10 @@
 </template>
 
 <script>
-import adminNav from "./adminNav.vue";
 export default {
-  components: { adminNav },
   mounted() {
-    this.init(1);
-
+    let page = parseInt(this.$route.query.page) || 1;
+    this.init(page);
     console.log("NewsIndexComponent mounted.");
   },
   computed: {},
@@ -52,10 +56,12 @@ export default {
     res: {},
     current_page: 1,
     maxPage: 1,
+    onLoading: true,
   }),
   methods: {
     init(page) {
       let url = window.location.origin + "/api/news?page=" + page;
+      this.onLoading = true;
       const csrfToken = document.head.querySelector(
         "[name~=csrf-token][content]"
       ).content;
@@ -70,10 +76,9 @@ export default {
           .then((data) => {
             console.log(data);
             this.res = data;
-            console.log(this.res.total);
-            console.log(this.res.per_page);
+            this.onLoading = false;
+            this.current_page = data.current_page;
             this.maxPage = Math.ceil(this.res.total / this.res.per_page);
-            console.log(this.maxPage);
           })
           .catch((err) => {
             console.log(err);

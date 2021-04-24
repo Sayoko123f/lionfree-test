@@ -1,18 +1,20 @@
 <template>
-  <div class="container">
-    <admin-nav></admin-nav>
+  <div class="container" v-show="!onLoading">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <router-link
+          class="nav-link"
+          href="#"
+          :to="{ name: 'newsIndex', query: { page: this.$route.query.page } }"
+          >返回</router-link
+        >
+        <!-- <a class="nav-link" href="#" @click="$router.go(-1)">返回</a> -->
+      </li>
+    </ul>
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">{{ res.title }}</h4>
         <p class="card-text">{{ res.ctx }}</p>
-        <button type="button" class="btn btn-danger" @click="destroy()">
-          刪除
-        </button>
-        <router-link
-          :to="{ name: 'newsEdit', params: { id: this.$route.params.id } }"
-        >
-          <button type="button" class="btn btn-secondary">編輯</button>
-        </router-link>
       </div>
     </div>
   </div>
@@ -20,19 +22,14 @@
 
 <script>
 export default {
-  beforeRouteUpdate() {
-    this.init();
-  },
   mounted() {
     this.init();
     console.log("NewsShowComponent mounted.");
   },
   data: () => ({
     res: {},
+    onLoading: true,
   }),
-  props: {
-    deleteUrl: "",
-  },
   methods: {
     init() {
       let url = window.location.origin + "/api/news/" + this.$route.params.id;
@@ -53,36 +50,13 @@ export default {
               // go to 404 page
             }
             this.res = data[0];
+            this.onLoading = false;
           })
           .catch((err) => {
             console.log(err);
             alert(err);
           });
       });
-    },
-    destroy() {
-      if (!confirm("確定要刪除此篇文章嗎？此動作無法復原")) {
-        return;
-      }
-      let url = window.location.origin + "/api/news/" + this.$route.params.id;
-      const csrfToken = document.head.querySelector(
-        "[name~=csrf-token][content]"
-      ).content;
-      fetch(url, {
-        method: "delete",
-        headers: {
-          "X-CSRF-TOKEN": csrfToken,
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            this.$router.replace({ name: "admin" });
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          alert(err);
-        });
     },
   },
 };
