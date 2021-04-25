@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\TestCase;
 use Tests\CreatesApplication;
 use App\Models\News;
-use PDO;
 
 class NewsTest extends TestCase
 {

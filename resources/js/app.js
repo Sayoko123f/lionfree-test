@@ -1,8 +1,15 @@
 require('./bootstrap');
-window.Vue = require('vue');
 import Vue from 'vue';
 import router from './router.js';
-require('./myfunc')
+import my from './myfunc';
+import * as PhotoSwipe from 'photoswipe'
+import * as PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
+import 'photoswipe/dist/photoswipe.css';
+import 'photoswipe/dist/default-skin/default-skin.css';
+window.PhotoSwipe = PhotoSwipe;
+window.PhotoSwipeUI_Default = PhotoSwipeUI_Default;
+window.Vue = require('vue');
+window.my = my;
 
 
 /** For admin */

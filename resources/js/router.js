@@ -6,11 +6,13 @@ import example from './components/ExampleComponent.vue';
 import index from './components/IndexJumbotronComponent.vue';
 import newsIndex from './components/NewsIndexComponent.vue';
 import newsShow from './components/NewsShowComponent.vue';
+import gallery from './components/PswpGalleryComponent.vue';
 
 const routes = [
     { path: '/', component: index, name: 'index', },
     { path: '/news', component: newsIndex, name: 'newsIndex'},
     { path: '/news/:id', component: newsShow, name: 'newsShow', },
+    { path: '/gallery', component: gallery, name: 'gallery', },
     // { path: '/news', redirect: '/admin', meta: { auth: true } },
     // { path: '/home', redirect: '/admin', meta: { auth: true } },
 ]

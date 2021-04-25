@@ -13,6 +13,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <router-link :to="{name:'newsIndex'}" class="nav-link">公告</router-link>
+                <router-link :to="{name:'gallery'}" class="nav-link">圖片</router-link>
             </ul>
 
             <!-- Right Side Of Navbar -->

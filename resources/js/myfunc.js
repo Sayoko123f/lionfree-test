@@ -1,4 +1,4 @@
-window.my = {
+const my = {
     origin: window.location.origin,
     newsIndexUrl: window.location.origin + "/admin",
     newsCreateUrl: window.location.origin + "/admin/news",
@@ -34,5 +34,21 @@ window.my = {
             return false;
         }
         return true;
-    }
+    },
+    gallery: [
+        { src: '/img/bg01.jpg' },
+        { src: '/img/bg02.jpg' },
+        { src: '/img/bg03.jpg' },
+        { src: '/img/bg04.jpg' },
+        { src: '/img/bg05.jpg' },
+        { src: '/img/bg06.jpg' },
+        { src: '/img/bg07.jpg' },
+        { src: '/img/gallery01.jpg' },
+        { src: '/img/gallery02.jpg' },
+        { src: '/img/gallery03.jpg' },
+        { src: '/img/gallery04.jpg' },
+        { src: '/img/gallery05.jpg' },
+    ]
 }
+
+export default my;
