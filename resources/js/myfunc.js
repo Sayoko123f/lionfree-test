@@ -1,7 +1,7 @@
 window.my = {
     origin: window.location.origin,
     newsIndexUrl: window.location.origin + "/admin",
-    newsCreateUrl: window.location.origin + "/api/news",
+    newsCreateUrl: window.location.origin + "/admin/news",
     destroy(url) {
         if (!confirm("確定要刪除此篇文章嗎？此動作無法復原")) {
             return;

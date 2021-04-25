@@ -17,7 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         //
-        $data = News::select(['id', 'created_at', 'title'])->orderBy('created_at', 'desc')->paginate(4);
+        $data = News::select(['id', 'created_at', 'title'])->orderBy('created_at', 'desc')->paginate(15);
         return response()->json($data);
     }
 

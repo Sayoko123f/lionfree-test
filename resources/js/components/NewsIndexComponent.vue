@@ -7,7 +7,7 @@
       </li>
     </ul>
     <div class="table-responsive">
-      <table class="table table-bordered">
+      <table class="table table-hover table-striped">
         <thead>
           <tr>
             <th>日期</th>
@@ -33,10 +33,10 @@
     </div>
     <nav aria-label="Page navigation">
       <ul class="pagination justify-content-center">
-        <li class="page-item" :class="{ disabled: current_page == 1 }">
+        <li class="page-item" :class="{ disabled: current_page === 1 }">
           <span role="button" class="page-link" @click="pageMove(-1)">◄</span>
         </li>
-        <li class="page-item" :class="{ disabled: current_page == maxPage }">
+        <li class="page-item" :class="{ disabled: current_page === maxPage }">
           <span role="button" class="page-link" @click="pageMove(1)">►</span>
         </li>
       </ul>
@@ -99,3 +99,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.container{
+  background: white;
+}
+</style>

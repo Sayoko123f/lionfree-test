@@ -12,9 +12,11 @@
 
 <body>
     <div id="app">
-    @include('nav')
-    {{-- <router-link to="/admin">Go to Admin</router-link> --}}
-    <router-view></router-view>
+        @include('nav')
+        <div class="jumbotron jumbotron-fluid bg">
+            {{-- <router-link to="/admin">Go to Admin</router-link> --}}
+            <router-view></router-view>
+        </div>
     </div>
     <script src="{{asset('js/app.js')}}" defer></script>
 </body>
