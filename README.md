@@ -13,7 +13,29 @@
 - 發表公告 CRUD(新增、修改、編輯、刪除)，支援 Markdown 語法
 ******
 #### 一些技術細節
-> v-router 不需刷新頁面，動態載入頁面(類似 Gmail)
+webpack 前端資源打包\
+壓縮 CSS 和 Javascript 到一個檔案內減少載入時間
+```js
+require('./bootstrap');
+import Vue from 'vue';
+import router from './router.js';
+import my from './myfunc';
+import * as PhotoSwipe from 'photoswipe';
+import * as PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default';
+import 'photoswipe/dist/photoswipe.css';
+import 'photoswipe/dist/default-skin/default-skin.css';
+import mavonEditor from 'mavon-editor';
+import 'mavon-editor/dist/css/index.css';
+import marked from 'marked';
+import 'github-markdown-css';
+window.marked = marked;
+window.PhotoSwipe = PhotoSwipe;
+window.PhotoSwipeUI_Default = PhotoSwipeUI_Default;
+window.Vue = require('vue');
+Vue.use(mavonEditor);
+window.my = my;
+```
+v-router 不需刷新頁面，動態載入頁面(類似 Gmail)
 ```js
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -35,29 +57,7 @@ const router = new VueRouter({
 });
 export default router;
 ```
-> webpack 前端資源打包\
-> 壓縮 CSS 和 Javascript 到一個檔案內減少載入時間
-```js
-require('./bootstrap');
-import Vue from 'vue';
-import router from './router.js';
-import my from './myfunc';
-import * as PhotoSwipe from 'photoswipe';
-import * as PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default';
-import 'photoswipe/dist/photoswipe.css';
-import 'photoswipe/dist/default-skin/default-skin.css';
-import mavonEditor from 'mavon-editor';
-import 'mavon-editor/dist/css/index.css';
-import marked from 'marked';
-import 'github-markdown-css';
-window.marked = marked;
-window.PhotoSwipe = PhotoSwipe;
-window.PhotoSwipeUI_Default = PhotoSwipeUI_Default;
-window.Vue = require('vue');
-Vue.use(mavonEditor);
-window.my = my;
-```
-> 資料 CRUD 使用 [RESTful API](https://medium.com/itsems-frontend/api-%E6%98%AF%E4%BB%80%E9%BA%BC-restful-api-%E5%8F%88%E6%98%AF%E4%BB%80%E9%BA%BC-a001a85ab638) 風格
+資料 CRUD 使用 [RESTful API](https://medium.com/itsems-frontend/api-%E6%98%AF%E4%BB%80%E9%BA%BC-restful-api-%E5%8F%88%E6%98%AF%E4%BB%80%E9%BA%BC-a001a85ab638) 風格
 ```php
 Route::get('/', [NewsController::class, 'index'])->name('admin.index');
 Route::get('/show/{id}', [NewsController::class, 'show'])->name('admin.news.show');
@@ -67,8 +67,8 @@ Route::post('news', [NewsController::class, 'store'])->name('news.store');
 Route::put('news/{id}', [NewsController::class, 'update'])->name('news.update');
 Route::delete('news/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
 ```
-> 用 blade 樣板寫 html, \@include, @yield 功能\
-> 拆分成組件增加可維護性
+用 blade 樣板寫 html, \@include, @yield 功能\
+拆分成組件增加可維護性
 ```php
 <body>
     <div id="app">
@@ -79,8 +79,8 @@ Route::delete('news/{id}', [NewsController::class, 'destroy'])->name('news.destr
     @yield('script')
 </body>
 ```
-> phpunit 單元測試\
-> 測試發表公告功能
+phpunit 單元測試\
+測試發表公告功能
 ```
    PASS  Tests\Unit\ExampleTest
   ✓ basic test
