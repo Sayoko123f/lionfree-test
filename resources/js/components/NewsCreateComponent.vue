@@ -13,13 +13,19 @@
     </div>
     <div class="form-group">
       <label for="content">內容：</label>
-      <textarea
+      <mavon-editor
+        v-model="news.ctx"
+        language="zh-TW"
+        :toolbars="toolbars"
+        placeholder="支援 markdown 語法"
+      />
+      <!-- <textarea
         class="form-control"
         rows="5"
         id="content"
         name="ctx"
         v-model="news.ctx"
-      ></textarea>
+      ></textarea> -->
     </div>
     <button type="button" class="btn btn-primary" @click="store()">送出</button>
   </div>
@@ -32,6 +38,7 @@ export default {
   },
   data: () => ({
     news: { title: "", ctx: "" },
+    toolbars: my.toolbars,
   }),
   methods: {
     store() {

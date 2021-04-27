@@ -16,8 +16,8 @@
         110612304
       </p><br/>
       <p>
-        <a href="#" class="btn btn-primary my-2 myFadeIn">連結</a>
-        <a href="#" class="btn btn-secondary my-2 myFadeIn">原始碼</a>
+        <a href="https://github.com/Sayoko123f/lionfree-test" class="btn btn-primary my-2 myFadeIn">原始碼</a>
+        <button type="button" class="btn btn-secondary my-2 myFadeIn" @click="showTestAccount()">測試帳號</button>
       </p>
     </div>
   <!-- </div> -->
@@ -30,7 +30,11 @@ export default {
   },
   computed: {},
   data: () => ({}),
-  methods: {},
+  methods: {
+    showTestAccount(){
+      alert('帳號: nqu@nqu\n密碼: nqunqunqu');
+    }
+  },
 };
 </script>
 <style scoped>

@@ -61,9 +61,12 @@ class NewsController extends Controller
     {
         //
         $data['news'] = News::select(['id', 'title', 'ctx', 'created_at'])->where('id', $id)->get();
+        if (count($data['news']) === 0) {
+            return $this->index();
+        }
         return view('admin.News_show')->with('data', $data);
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -74,6 +77,9 @@ class NewsController extends Controller
     {
         //
         $data['news'] = News::select(['id', 'title', 'ctx', 'created_at'])->where('id', $id)->get();
+        if (count($data['news']) === 0) {
+            return $this->index();
+        }
         return view('admin.News_edit')->with('data', $data);
     }
 

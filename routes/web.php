@@ -28,10 +28,10 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
-Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
-Route::post('/password/confirm', [ConfirmPasswordController::class, 'confirm']);
+//Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+//Route::post('/register', [RegisterController::class, 'register']);
+//Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+//Route::post('/password/confirm', [ConfirmPasswordController::class, 'confirm']);
 Route::get('/home', [NewsController::class, 'index'])->name('home');
 // Auth::routes();
 

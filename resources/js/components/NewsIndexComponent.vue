@@ -1,11 +1,5 @@
 <template>
   <div class="container" v-show="!onLoading">
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <span class="nav-link">&nbsp;</span>
-        <!-- <a class="nav-link" href="#" @click="$router.go(-1)">返回</a> -->
-      </li>
-    </ul>
     <div class="table-responsive">
       <table class="table table-hover table-striped">
         <thead>

@@ -14,7 +14,8 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">{{ res.title }}</h4>
-        <p class="card-text">{{ res.ctx }}</p>
+        <hr />
+        <div class="markdown-body" v-html="maincontent"></div>
       </div>
     </div>
   </div>
@@ -28,6 +29,7 @@ export default {
   },
   data: () => ({
     res: {},
+    maincontent: "",
     onLoading: true,
   }),
   methods: {
@@ -50,7 +52,9 @@ export default {
               // go to 404 page
             }
             this.res = data[0];
+            this.maincontent = marked(this.res.ctx);
             this.onLoading = false;
+            hljs.highlightAll();
           })
           .catch((err) => {
             console.log(err);

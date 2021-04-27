@@ -54,7 +54,7 @@ class NewsTest extends TestCase
         $this->post('/login', self::CORRECTADMIN);
         $response = $this->post(route('news.store'), ['ctx' => 'haha', 'title' => '1017test']);
         $response->assertSuccessful();
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $this->post(route('news.store'), ['ctx' => 'haha', 'title' => '1017test']);
         }
     }

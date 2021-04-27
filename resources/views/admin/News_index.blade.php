@@ -11,6 +11,7 @@
                 </tr>
             </thead>
             <tbody>
+                @if (isset($data['news']))
                 @foreach ($data['news'] as $item)
                 <tr>
                     <td>{{ $item->created_at }}</td>
@@ -24,6 +25,7 @@
                     </td>
                 </tr>
                 @endforeach
+                @endif
             </tbody>
         </table>
     </div>

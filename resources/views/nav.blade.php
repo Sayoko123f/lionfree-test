@@ -12,8 +12,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <router-link :to="{name:'newsIndex'}" class="nav-link">公告</router-link>
-                <router-link :to="{name:'gallery'}" class="nav-link">圖片</router-link>
+                <li class="nav-item">
+                    <router-link :to="{name:'newsIndex'}" class="nav-link">公告</router-link></li>
+                    <li class="nav-item">
+                <router-link :to="{name:'gallery'}" class="nav-link">圖片</router-link></li>
+                @auth
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.index') }}">後台</a>
+                </li>
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
