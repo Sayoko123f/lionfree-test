@@ -1,4 +1,4 @@
-# 網站期中_110612304
+# 網站期中
 ### 使用 PHP Laravel, Vue.js, Bootstarp.
 ### 作業原始碼 [Github](https://github.com/Sayoko123f/lionfree-test)
 ******
